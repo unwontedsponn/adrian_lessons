@@ -1,0 +1,86 @@
+#include <iostream>
+#include <numeric>
+
+using namespace std;
+
+int main() {
+  
+  // Create the size of an array
+  int size;
+
+  cout << "\n--------------------\n";
+  cout << "\nEnter size of array:\n";
+  cin >> size;
+  cout << endl;
+
+  // Create array and assign random numbers between 0 - 99 to each array element
+  int randomArray[size];
+
+  for (int i = 0; i < size; i++) {
+    randomArray[i] = rand() % 100;
+  }
+
+  // Print array along with numbers indexing each number from 1, 2, 3...
+  cout << "\nArray with random numbers:\n";
+
+  for (int i = 0; i < size; i++) {
+    cout << i+1 << ": " << randomArray[i] << "\t";
+  }
+
+  cout << endl << endl;
+
+  // Find and print the sum of the array - THIS PART USES THE #INCLUDE <NUMERIC>
+  int sum = 0;
+  sum = accumulate(randomArray, randomArray+size, sum);
+
+  cout << "\nThe sum of the array is: " << sum << "\n\n";
+
+  // Find and print the mean of the array
+  int meanOfArray = sum / size;
+
+  cout << "\nThe mean of the array is (rounded down): " << meanOfArray << "\n\n";
+
+  // Sort array using nested for loop - ascending
+  int temp;
+  
+  for (int i = 0; i < size - 1; i++) {
+    for (int j = i + 1; j < size; j++) {
+      if (randomArray[i] > randomArray[j]) {
+        temp = randomArray[j];
+        randomArray[j] = randomArray[i];
+        randomArray[i] = temp;
+      }
+    }
+  }
+
+  // Print ascending array along with numbers indexing each number from 1, 2, 3...
+  cout << "\nArray reorganised into ascending order:" << endl;
+  for (int i = 0; i < size; i++) {
+    cout << i+1 << ": " << randomArray[i] << "\t";
+  }
+
+  // Print lowest number in array
+  cout << "\n\n\nThe lowest number in the array is: " << randomArray[0] << endl << endl;
+
+  // Sort array using nested loop = descending
+  for (int i = 0; i < size - 1; i++) {
+    for (int j = i + 1; j < size; j++) {
+      if (randomArray[i] < randomArray[j]) {
+        temp = randomArray[j];
+        randomArray[j] = randomArray[i];
+        randomArray[i] = temp;
+      }
+    }
+  }
+
+  // Print descending array along with numbers indexing each number from 1, 2, 3...
+  cout << "\nArray reorganised into descending order:" << endl;
+  for (int i = 0; i < size; i++) {
+    cout << i+1 << ": " << randomArray[i] << "\t";
+  }
+
+  // Print lowest number in array
+  cout << "\n\n\nThe highest number in the array is: " << randomArray[0] << endl << endl;
+
+    return 0;
+}
